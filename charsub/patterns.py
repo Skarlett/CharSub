@@ -37,55 +37,6 @@ def constant(deformInstance, word, prefill=list()):
           complete.append(item)
 
     return complete
-
-  
-def second_iter(deformInstance, word):
-
-    # TODO remove
-    '''
-        Obsolete | Use "constant"
-        :param deformInstance: Instance of Substitute
-          :type: Substitute()
-
-        :param word: string to permutate
-          :type: str
-
-        :return: iterable of all combinations generated
-          :type: set
-
-
-        '''
-
-    data = []
-    for rule in deformInstance.ruleSet:
-      for letter in deformInstance.ruleSet[rule]:
-        for i in range(len(word)):
-          temp = word.replace(rule, letter, i)
-          if temp != word and not temp in data:
-            data.append(temp)
-    return data
-
-
-  
-def replace_topple_iter(deformInstance, word):
-    complete = []
-    for stage in range(len(word)):
-      collector = []
-      for letter in word:
-        for rule in deformInstance.getRules(letter):
-          if stage == 0:
-            collector.append(word.replace(letter, rule))
-          else:
-            print complete
-            for x in complete:
-              data = x.replace(letter, rule)
-              if not data in complete and len(data) == len(word):
-                collector.append(data)
-      complete.append(collector)
-      complete = list(Utils.flatten(complete))
-
-    return Utils.flatten(complete)
-
   
 def modulus(deformInstance, word, prefill=list()):
     '''
