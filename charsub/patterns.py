@@ -30,23 +30,25 @@ def constant(deformInstance, word, prefill=list(), entrophy_level=None, entrophy
     if el > len(word):
       raise ValueError("Entrophy Level cannot be greater than the length of the string being processed.")
 
-    complete = set(prefill)
+    complete = set([(x, -1) for x in prefill])
     
     for series in range(el):
       collector = set()
       for pos, letter in enumerate(word):
         for rule in deformInstance.getRules(letter):
           if series == 0:
-            collector.add((Utils.replace_exact(word, pos, rule), series))
+            collector.add((Utils.replace_exact(word, pos, rule), 0))
           else:
-            for x in complete:
-              data = Utils.replace_exact(x, pos, rule)
-              if not data in complete:
-                collector.add((data, series))
-      complete.union(collector)
+            for itered in complete:
+              if len(itered) > 1:
+                itered, _ = itered
+                if len(word) == len(itered):
+                  collector.add((Utils.replace_exact(itered, pos, rule), series))
+      
+      complete.update(collector)
     return [x for x, i in complete if i >= es]
   
-def modulus(deformInstance, word, prefill=list(), entrophy_level=None, entrophy_start=0):
+def modulus(deformInstance, word, prefill=set(), entrophy_level=None, entrophy_start=0):
     '''
 
     The method used in this function was the idea to use the modulus/remainders
@@ -100,7 +102,8 @@ def modulus(deformInstance, word, prefill=list(), entrophy_level=None, entrophy_
     if el > len(word):
       raise ValueError("Entrophy Level cannot be greater than the length of the string being processed.")
     
-    complete = set(prefill)
+    prefill.add(word)
+    complete = set([(x, -1) for x in prefill])
     
     for series in range(el):                     # <- This how we keep track of how many times we've iterated over into "complete" variable
       collector = set()                                    # <- This is our current changes we're gonna append
@@ -110,16 +113,15 @@ def modulus(deformInstance, word, prefill=list(), entrophy_level=None, entrophy_
           if pos % skipper == 0:                        # <- Does our skipper agree that this letter should be changed?
             for l in rule:                              # <- for each letter in that rule
               if series == 0:                           # If this is our first round about, we don't have to iterate our pervious results (Because there is none)
-                data = Utils.replace_exact(word, pos, l)
-                if not data in complete and not data in collector:
-                  collector.add((Utils.replace_exact(word, pos, l), series))  # This is our first results we're gonna iter over again
+                collector.add((Utils.replace_exact(word, pos, l), series))  # This is our first results we're gonna iter over again
               
               else:
                 # We've made more than 1 round now, so let us iter over what we previously had,
                 # and also append those to be iterated
-                for word in complete:
-                  data = (Utils.replace_exact(word, pos, l), series)
-                  collector.add(data)
+                for w, _ in complete:
+                  data = (Utils.replace_exact(w, pos, l), series)
+                  if len(data[0]) == len(word):
+                    collector.add(data)
                   
-      complete.union(collector)
+      complete.update(collector)
     return [x for x, i in complete if i >= es]

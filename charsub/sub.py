@@ -102,7 +102,7 @@ class Substitute:
       deformFuncList = self.deformFuncList
 
     for func in deformFuncList:
-      dataBank.union(set(func(self, word,
+      dataBank.update(set(func(self, word,
                               prefill=dataBank,
                               entrophy_level=entrophy_level,
                               entrophy_start=entrophy_start)))
