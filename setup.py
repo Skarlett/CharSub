@@ -8,5 +8,5 @@ setup(
   author='Skarlett@github.com',
   author_email='zykl@protonmail.com',
   url='https://github.com/Skarlett/charsub',
-  packages=[''],
+  packages=['charsub'],
 )
