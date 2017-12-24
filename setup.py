@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
   name='charsub',
-  version='0.2.4',
+  version='0.2.5.1',
   description='This library is a framework designed for string manipulation, bruteforces, extra tools,' \
            'and giving every possiblity for a string input | A password generating toolset',
   author='Skarlett@github.com',
