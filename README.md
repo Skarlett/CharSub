@@ -13,3 +13,5 @@ Uses rulesets to substitute characters in a seperate squence of characters. Crea
     real    0m2.117s
     user    0m2.080s
     sys     0m0.008s
+
+Another output examples https://pastebin.com/6CgXcUGn
