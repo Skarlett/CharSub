@@ -24,11 +24,11 @@ Uses rulesets to substitute characters in a seperate squence of characters. Crea
     
  ### Speed
 -------
-    time python -c "from charsub import Substitute;print(len(Substitute().deform('password')))"
+    time python -c "from charsub import Substitute; print len(Substitute().deform('password'))"
     4800
     
-    real    0m2.117s
-    user    0m2.080s
+    real    0m1.893s
+    user    0m1.880s
     sys     0m0.008s
 
 Another output examples https://pastebin.com/6CgXcUGn
