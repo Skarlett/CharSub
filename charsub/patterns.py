@@ -4,6 +4,31 @@ from sys import version_info
 if version_info.major == 2:
  range = xrange
  
+def replace_exact(word, position, new):
+  '''
+  Replaces exact charcter on position
+
+  :param: word: string to manipulate
+    :type: str
+
+  :param: position: exact character spot to replace
+    :type int
+
+  :param: new: string to replace to with
+    :type: str
+
+  :return: newword: manipulated result
+    :type: str
+  '''
+  newword = ''
+  for i, x in enumerate(word):
+    if i == position:
+      newword += new
+    else:
+      newword += x
+  return newword
+
+
 
 def constant(deformInstance, word, prefill=list(), entrophy_level=None, entrophy_start=0):
     '''
@@ -37,10 +62,10 @@ def constant(deformInstance, word, prefill=list(), entrophy_level=None, entrophy
       for pos, letter in enumerate(word):
         for rule in deformInstance.getRules(letter):
           if series == 0:
-            collector.add((Utils.replace_exact(word, pos, rule), 0))
+            collector.add((replace_exact(word, pos, rule), 0))
           else:
             for itered, _ in complete:
-              collector.add((Utils.replace_exact(itered, pos, rule), series))
+              collector.add((replace_exact(itered, pos, rule), series))
       
       complete.update(collector)
     return [x for x, i in complete if i >= es]
@@ -110,12 +135,12 @@ def modulus(deformInstance, word, prefill=set(), entrophy_level=None, entrophy_s
           if pos % skipper == 0:                        # <- Does our skipper agree that this letter should be changed?
             for l in rule:                              # <- for each letter in that rule
               if series == 0:                           # If this is our first round about, we don't have to iterate our pervious results (Because there is none)
-                collector.add((Utils.replace_exact(word, pos, l), series))  # This is our first results we're gonna iter over again
+                collector.add((replace_exact(word, pos, l), series))  # This is our first results we're gonna iter over again
               else:
                 # We've made more than 1 round now, so let us iter over what we previously had,
                 # and also append those to be iterated
                 for w, _ in complete:
-                  collector.add((Utils.replace_exact(w, pos, l), series))
+                  collector.add((replace_exact(w, pos, l), series))
                   
       complete.update(collector)
     return [x for x, i in complete if i >= es]

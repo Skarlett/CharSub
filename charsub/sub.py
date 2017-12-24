@@ -65,31 +65,6 @@ def makeDefaultRules():
   return Default_Rules
 
 
-def replace_exact(word, position, new):
-  '''
-  Replaces exact charcter on position
-
-  :param: word: string to manipulate
-    :type: str
-
-  :param: position: exact character spot to replace
-    :type int
-
-  :param: new: string to replace to with
-    :type: str
-
-  :return: newword: manipulated result
-    :type: str
-  '''
-  newword = ''
-  for i, x in enumerate(word):
-    if i == position:
-      newword += new
-    else:
-      newword += x
-  return newword
-
-
 class Substitute:
   def __init__(self, ruleSet=None, patterns_list=[patterns.constant, patterns.modulus]):
     '''
