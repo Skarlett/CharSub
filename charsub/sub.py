@@ -83,7 +83,7 @@ class Substitute:
       return False
     return True
 
-  def deform(self, word, deformFuncList=list(), entrophy_level=None, entrophy_start=0):
+  def deform(self, word, deformFuncList=list()):
     '''
     Main function to use a majority of the functionality of the project.
     
@@ -96,16 +96,15 @@ class Substitute:
     
     :return: list: data of deformed iterations with no duplicates
     '''
-    dataBank = set(word)
+    dataBank = [word]
 
     if len(deformFuncList) == 0:
       deformFuncList = self.deformFuncList
 
     for func in deformFuncList:
-      dataBank.union(set(func(self, word,
-                              prefill=dataBank,
-                              entrophy_level=entrophy_level,
-                              entrophy_start=entrophy_start))
+      for y in set(func(self, word, prefill=dataBank)):
+        if not y in dataBank:
+          dataBank.append(y)
     return dataBank
 
 

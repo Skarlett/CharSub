@@ -1,29 +1,5 @@
-from string import ascii_lowercase, printable
+from string import ascii_lowercase
 from os.path import isfile
-
-def wordTwist(word, func, *args, **kwargs):
-    complete = []
-    for i in range(2):
-      if i == 0:
-        for x in func(word, *args, **kwargs):
-          if not x in complete:
-            complete.append(x)
-      else:
-        for x in func(word[::-1], *args, **kwargs):
-          if not x[::-1] in complete:
-            complete.append(x[::-1])
-
-
-def force_yield(iter):
-    '''
-    force an iter to yield
-    :param iter: iterable
-      :type: list | tulpe | set | generator
-    :yield: Object in iter
-    '''
-    assert type(iter) in [list, tuple, set, function]
-    for x in iter:
-      yield x
 
 
 def loadRuleSet(fileLocation):
@@ -46,85 +22,6 @@ def loadRuleSet(fileLocation):
     return rules
 
 
-def remove_char(word, position):
-    '''
-      Removes an exact chatacter by position
-
-    :param:  word: 
-      :type: str
-      Word to manipulate.
-
-    :param:  position: 
-      :type: int
-      Position to remove
-
-    :return: Manipulated word
-      :type: str
-
-    '''
-    return ''.join(x for i, x in enumerate(word) if not i == position)
-
-
-def flatten(x):
-    '''
-    Flattens irregular lists and removes dupiliciations, Example:
-      eg: [1, 2, 1, 3, 1, 4, [4, 2, 1, 5, [6, [7]], 9,], 0] -> Changes to -> [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
-
-    :param x: Irregular list
-     :type: list/array 
-
-    :return: immutable list of x
-      :type: set
-
-    '''
-    r = []
-    for p in x:
-      r.extend(p)
-    return set(r)
-
-  
-def countLetters(word):
-    '''
-    count the frequency of a letter
-
-    :param word: string to count letter frequency of
-     :type: str
-
-    :return: dict with letters as keys and frequency as item, eg {'a':1, 'b':4}
-     :type: dict
-
-    '''
-    data = {}
-    complete = {}
-
-    for x in printable:
-      data[x] = 0
-
-    for x in word:
-      if x in data:
-        data[x] += 1
-
-    for x in data:
-      if data[x] > 0:
-        complete[x] = data[x]
-
-    return complete
-
-  
-def walker(string):
-    '''
-    walk through the word and get a list of values on position,
-    returns a list of letter and position     [(letter, position),...]
-
-
-    :param string: count string, and walk position, and char
-      :type: str
-
-    :return: list of tuples with various letters and positions [('a', 0),('b', 1)...]
-      :type: list
-
-    '''
-    return [(x, i) for i, x in enumerate(string)]
 
   
 def makeDefaultRules():

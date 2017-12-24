@@ -1,4 +1,3 @@
-from charsub.sub import Substitute
 
 def BruteForce(end, chars=str(), start=int()):
       ''' 
