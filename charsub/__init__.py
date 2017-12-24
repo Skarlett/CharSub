@@ -18,8 +18,3 @@ from charsub.sub import Substitute
 # have options to write to disk instead of using memory. Although, I haven't got flush & fsync to work
 # This would accomplish a lot of memory tasks with minial memory usage - although slower
 # But allowing very weak machines to run this, my machine has 16gb of memory and I see this easily jump to 4gb or 6gb
-
-# TODO
-# analyze data from comparsions             Check
-# rewrite the first_iter & Document         Check
-# Write wordlist tools (Destroying dups)    Uhm.
