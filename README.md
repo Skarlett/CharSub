@@ -7,5 +7,9 @@ Uses rulesets to substitute characters in a seperate squence of characters. Crea
      print(a.deform('...'))
      >>> ['A..', '.A.', '..A']
 --------
-### output from "password"
-https://pastebin.com/raw/FQbDnUHH
+    time python -c "from charsub import Substitute;print(len(Substitute().deform('password')))"
+    4800
+    
+    real    0m2.117s
+    user    0m2.080s
+    sys     0m0.008s
