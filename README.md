@@ -5,7 +5,7 @@ Uses rulesets to substitute characters in a seperate squence of characters. Crea
      
      a = Substitute({'.':'A'})
      print(a.deform('...'))
-     >>> ['A..', '.A.', '..A']
+     >>> ['...', 'A..', '.A.', '..A', 'AA.', 'A.A', '.AA', 'AAA']
 --------
     time python -c "from charsub import Substitute;print(len(Substitute().deform('password')))"
     4800
