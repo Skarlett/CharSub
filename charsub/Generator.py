@@ -50,5 +50,3 @@ def BruteForce(end, chars=str(), start=int()):
               _round = [x + i for i in chars for x in _round]
           for x in _round:
               yield x
-
-

@@ -1,6 +1,6 @@
 from os.path import isfile
-
 from charsub import patterns
+import charsub.Utils
 
 
 class Substitute:
@@ -40,7 +40,7 @@ class Substitute:
     try:
       assert type(ruleSet) == dict
     except Exception:
-      print ruleSet
+      print(ruleSet)
       # What did you give me...?
       raise ValueError('RuleSet needs to be Dictionary | Filepath | None')
 
@@ -78,7 +78,7 @@ class Substitute:
             f.write(x + ':' + self.ruleSet[x] + '\n')
     except Exception as e:
       if __debug__ == True:
-        print e
+        print(e)
 
       return False
     return True
@@ -120,7 +120,7 @@ class Substitute:
           for line in r:
             if len(line.strip()) > 0:
               if verbose:
-                print line.strip()
+                print(line.strip())
               if type(charLimit) == int:
                 line = line[:charLimit]
 
@@ -129,7 +129,7 @@ class Substitute:
                   f.write(result + '\n')
 
     except Exception as e:
-      print e.message
+      print(e.message)
       return False
     return True
 

@@ -65,9 +65,9 @@ def patternComparsion(deformInstance, testData, iterables=None, verbose=True):
   if verbose:
     for _id, _data in data.items():
       vdata = []
-      print '-' * 20
-      print _id
-      print '-' * 20
+      print('-' * 20)
+      print(_id)
+      print('-' * 20)
 
       for _name, _val in _data.items():
         if not type(_val) == dict:
@@ -76,14 +76,14 @@ def patternComparsion(deformInstance, testData, iterables=None, verbose=True):
           vdata.append((_name, _val.items(), 2))
       for n, v, priority in vdata:
         if priority == 1:
-          print '\t' + n + ': ' + str(v)
-      print '\n========Comparison data========\n'
+          print('\t' + n + ': ' + str(v))
+      print('\n========Comparison data========\n')
       for n, v, priority in vdata:
         if priority == 2:
-          print '\t\t' + n + ' (compared to ' + _id + ')\n\t\t' + '-' * 25
+          print('\t\t' + n + ' (compared to ' + _id + ')\n\t\t' + '-' * 25)
           # print '\t\t\n'+'-'*10
           for _n, _v in v:
-            print '\t\t' + str(_n) + ': ' + str(_v)
-          print '\n'
+            print('\t\t' + str(_n) + ': ' + str(_v))
+          print('\n')
 
   return data
