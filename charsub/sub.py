@@ -83,58 +83,7 @@ class Substitute:
       return False
     return True
 
-  def deformWordlist(self, fp, outfp, verbose=True, charLimit=None, iters=None):
-    '''
-    
-    using the function deform and passing iters to it, it can deform a wordlist seperated as below...
-    
-    'password1\n' \
-    'password2\n' \
-    'password3\n'
-    
-    :param fp: filepath to read file from
-      :type: str
-    
-    :param outfp: filepath to write to
-      :type: str
-    
-    :param verbose: To print out current word in list
-      :type: bool
-    
-    :param charLimit: Break permutation at certain length reaches above
-      :type: int | none
-    
-    :param iters: list of iterables to use from __SubIters__ or None for defaults
-      :type: None | list
-      
-    :return: Bool | true if written to disk without errors
-    '''
-
-
-    try:
-      if iters == None:
-        iters = self.deformFuncList
-
-      with open(outfp, 'a') as f:
-        with open(fp, 'r') as r:
-          for line in r:
-            if len(line.strip()) > 0:
-              if verbose:
-                print(line.strip())
-              if type(charLimit) == int:
-                line = line[:charLimit]
-
-              for result in self.deform(line.strip(), deformFuncList=iters):
-                if len(result) > 0:
-                  f.write(result + '\n')
-
-    except Exception as e:
-      print(e.message)
-      return False
-    return True
-
-
-  def deform(self, word, deformFuncList=list()):
+  def deform(self, word, deformFuncList=list(), entrophy_level=None, entrophy_start=0):
     '''
     Main function to use a majority of the functionality of the project.
     
@@ -147,15 +96,16 @@ class Substitute:
     
     :return: list: data of deformed iterations with no duplicates
     '''
-    dataBank = [word]
+    dataBank = set(word)
 
     if len(deformFuncList) == 0:
       deformFuncList = self.deformFuncList
 
     for func in deformFuncList:
-      for y in set(func(self, word, prefill=dataBank)):
-        if not y in dataBank:
-          dataBank.append(y)
+      dataBank.union(set(func(self, word,
+                              prefill=dataBank,
+                              entrophy_level=entrophy_level,
+                              entrophy_start=entrophy_start))
     return dataBank
 
 
