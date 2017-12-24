@@ -30,7 +30,7 @@ def constant(deformInstance, word, prefill=list(), entrophy_level=None, entrophy
     if el > len(word):
       raise ValueError("Entrophy Level cannot be greater than the length of the string being processed.")
 
-    complete = set([(x, -1) for x in prefill])
+    complete = set([(x, len(word)) for x in prefill])
     
     for series in range(el):
       collector = set()
@@ -100,7 +100,7 @@ def modulus(deformInstance, word, prefill=set(), entrophy_level=None, entrophy_s
       raise ValueError("Entrophy Level cannot be greater than the length of the string being processed.")
     
     prefill.add(word)
-    complete = set([(x, -1) for x in prefill])
+    complete = set([(x, len(word)) for x in prefill])
     
     for series in range(el):                     # <- This how we keep track of how many times we've iterated over into "complete" variable
       collector = set()                                    # <- This is our current changes we're gonna append
