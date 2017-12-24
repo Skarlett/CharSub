@@ -96,7 +96,7 @@ class Substitute:
     
     :return: list: data of deformed iterations with no duplicates
     '''
-    dataBank = set(word)
+    dataBank = set([word])
 
     if len(deformFuncList) == 0:
       deformFuncList = self.deformFuncList
