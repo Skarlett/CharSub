@@ -4,8 +4,10 @@ __author__ = 'Skarlett'
 __desc__ = 'This library is a framework designed for string manipulation, bruteforces, extra tools,' \
            'and giving every possiblity for a string input | A password generating toolset'
 __doc__ = __desc__
-from charsub.Generator import *
+
+
 from charsub.sub import Substitute
+
 
 # I really loved this project because it was logically intensive.
 

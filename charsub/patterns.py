@@ -1,4 +1,4 @@
-from charsub import Utils
+
 from sys import version_info
 
 if version_info.major == 2:
