@@ -64,7 +64,7 @@ def constant(deformInstance, word, prefill=list(), entrophy_level=None, entrophy
           if series == 0:
             collector.add(replace_exact(word, pos, rule))
           else:
-            for itered, _ in complete:
+            for itered in complete:
               collector.add(replace_exact(itered, pos, rule))
       
       complete.update(collector)
@@ -142,7 +142,7 @@ def modulus(deformInstance, word, prefill=set(), entrophy_level=None, entrophy_s
               else:
                 # We've made more than 1 round now, so let us iter over what we previously had,
                 # and also append those to be iterated
-                for w, _ in complete:
+                for w in complete:
                   collector.add(replace_exact(w, pos, l))
                   
       complete.update(collector)
