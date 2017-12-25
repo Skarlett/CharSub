@@ -1,5 +1,5 @@
 __title__ = 'charsub'
-__version__ = '0.2.5'
+__version__ = '0.2.5.1'
 __author__ = 'Skarlett'
 __desc__ = 'This library is a framework designed for string manipulation, bruteforces, extra tools,' \
            'and giving every possiblity for a string input | A password generating toolset'
