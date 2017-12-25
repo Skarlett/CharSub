@@ -138,7 +138,7 @@ def modulus(deformInstance, word, prefill=set(), entrophy_level=None, entrophy_s
           if pos % skipper == 0:                        # <- Does our skipper agree that this letter should be changed?
             for l in rule:                              # <- for each letter in that rule
               if series == 0:                           # If this is our first round about, we don't have to iterate our pervious results (Because there is none)
-                collector.add((replace_exact(word, pos, l), series))  # This is our first results we're gonna iter over again
+                collector.add(replace_exact(word, pos, l))  # This is our first results we're gonna iter over again
               else:
                 # We've made more than 1 round now, so let us iter over what we previously had,
                 # and also append those to be iterated
