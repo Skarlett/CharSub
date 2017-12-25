@@ -55,21 +55,24 @@ def constant(deformInstance, word, prefill=list(), entrophy_level=None, entrophy
     if el > len(word):
       raise ValueError("Entrophy Level cannot be greater than the length of the string being processed.")
 
-    complete = set([(x, len(word)) for x in prefill])
+    complete = set(prefill)
     
     for series in range(el):
       collector = set()
       for pos, letter in enumerate(word):
         for rule in deformInstance.getRules(letter):
           if series == 0:
-            collector.add((replace_exact(word, pos, rule), 0))
+            collector.add(replace_exact(word, pos, rule))
           else:
             for itered, _ in complete:
-              collector.add((replace_exact(itered, pos, rule), series))
+              collector.add(replace_exact(itered, pos, rule))
       
       complete.update(collector)
-    return [x for x, i in complete if i >= es]
-  
+      if entrophy_level and series >= entrophy_level:
+        break
+    
+    return complete
+   
 def modulus(deformInstance, word, prefill=set(), entrophy_level=None, entrophy_start=0):
     '''
 
@@ -125,7 +128,7 @@ def modulus(deformInstance, word, prefill=set(), entrophy_level=None, entrophy_s
       raise ValueError("Entrophy Level cannot be greater than the length of the string being processed.")
     
     prefill.add(word)
-    complete = set([(x, len(word)) for x in prefill])
+    complete = set(prefill)
     
     for series in range(el):                     # <- This how we keep track of how many times we've iterated over into "complete" variable
       collector = set()                                    # <- This is our current changes we're gonna append
@@ -140,7 +143,9 @@ def modulus(deformInstance, word, prefill=set(), entrophy_level=None, entrophy_s
                 # We've made more than 1 round now, so let us iter over what we previously had,
                 # and also append those to be iterated
                 for w, _ in complete:
-                  collector.add((replace_exact(w, pos, l), series))
+                  collector.add(replace_exact(w, pos, l))
                   
       complete.update(collector)
-    return [x for x, i in complete if i >= es]
+      if entrophy_level and series >= entrophy_level:
+       break
+    return complete
