@@ -1,4 +1,4 @@
-__title__ = 'pwGen'
+__title__ = 'charsub'
 __version__ = '0.2.5'
 __author__ = 'Skarlett'
 __desc__ = 'This library is a framework designed for string manipulation, bruteforces, extra tools,' \
