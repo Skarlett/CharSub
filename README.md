@@ -1,6 +1,7 @@
 # CharSub
 Uses rulesets to substitute characters in a seperate squence of characters. Create about 99% of possibilties.
 
+Example Output: https://pastebin.com/6CgXcUGn
 
 ## Basic usage
      from charsub import Substitute
@@ -62,4 +63,3 @@ Uses rulesets to substitute characters in a seperate squence of characters. Crea
   + 512KB RAM (2Gb recommended for larger data sets)
   + CPU - I dunno
   
-Another output examples https://pastebin.com/6CgXcUGn
