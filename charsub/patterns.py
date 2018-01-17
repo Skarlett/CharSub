@@ -4,7 +4,7 @@ from sys import version_info
 if version_info.major == 2:
  range = xrange
  
-def replace_exact(word, position, new):
+def _replace_exact(word, position, new):
   '''
   Replaces exact charcter on position
 
@@ -62,10 +62,10 @@ def constant(deformInstance, word, prefill=list(), entrophy_level=None, entrophy
       for pos, letter in enumerate(word):
         for rule in deformInstance.getRules(letter):
           if series == 0:
-            collector.add(replace_exact(word, pos, rule))
+            collector.add(_replace_exact(word, pos, rule))
           else:
             for itered in complete:
-              collector.add(replace_exact(itered, pos, rule))
+              collector.add(_replace_exact(itered, pos, rule))
       
       complete.update(collector)
       if entrophy_level and series >= entrophy_level:
